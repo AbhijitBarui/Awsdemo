@@ -12,7 +12,7 @@ def index(request):
 #        'price_choices': price_choices,
 #    }
 #    return render(request, 'pages/index.html', context)
-    return render(request, 'pages/index.html')
+    return render(request,'pages/index.html')
 
 def about(request):
     # realtors = Realtor.objects.order_by('-hire_date')
@@ -22,4 +22,4 @@ def about(request):
     #     'mvp_realtors': mvp_realtors,
     # }
     # return render(request, 'pages/about.html', context)
-    return render(request, 'pages/about.html')
+    return render(request,'pages/about.html')
