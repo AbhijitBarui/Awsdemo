@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Testproject/static'),]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_URL = 'static/'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'Testproject/static'),]
+
+AWS_ACCESS_KEY_ID = 'AKIAQBJAXY3SLFHJUFCE'
+AWS_SECRET_KEY_ACCESS = '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'
+AWS_STORAGE_BUCKET_NAME = 'awsdemo-bucket-1997'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = None
+
+AWS_LOCATION = 'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'Testproject/static')
+]
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
